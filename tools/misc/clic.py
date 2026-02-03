@@ -81,7 +81,13 @@ def clics_inf():
     Perform clicks at multiple points for a specified number of times.
     """
     puntos = int(input("\033[35mCuantos puntos? \033[39m"))
-    t = input("\033[32m tiempo en segundos?\033[39m ")
+    t = input("\033[32m tiempo en segundos (ex: 5.2)?\033[39m ")
+    count_input= input("¿Cuántas veces [letra v] o cuánto tiempo en horas [letra h]? (ej: 30v o 0.5h): ").lower().strip()
+    if count_input.endswith('v'):
+        count = int(count_input[:-1])
+    elif count_input.endswith('h'):
+        hours = float(count_input[:-1])
+        count = int(hours * 3600 / (puntos * (float(t) if t.replace('.','',1).isdigit() else (60 - puntos) // puntos + 0.5)))
     posiciones =[]
     for x in range(puntos):
         print("\033[36mPunto ", str(x), " para el mouse\033[35m")
@@ -90,20 +96,21 @@ def clics_inf():
         posiciones.append((px, py))
     hora_ini = datetime.datetime.now().replace(microsecond=0)
 
-    for x in range(30):
-        for i in range(5):
-            for p in posiciones:
-                xp, yp = p
-                pyautogui.moveTo(xp, yp, 1)
-                pyautogui.click()
-                tiempo = (60 - puntos) // puntos
-                try:
-                    time.sleep(int(t))
-                except ValueError:
-                    time.sleep(tiempo)    
-            time.sleep(3)
+    for x in range(count):
+        for p in posiciones:
+            xp, yp = p
+            pyautogui.moveTo(xp, yp, 0.5) # 0.5 segundos de movimiento
+            pyautogui.click()
+            tiempo = (60 - puntos) // puntos
+            try:
+                time.sleep(float(t))
+            except ValueError:
+                print("Error: tiempo no válido, usando tiempo por defecto ", tiempo)
+                time.sleep(tiempo)    
         hora_actual = datetime.datetime.now().replace(microsecond=0)
-        print(progressbar(x, 30), end='\r')
+        print(progressbar(x, count), end='\r')
+        if float(t) < 1:
+            time.sleep(2)
     MessageBox.showwarning("Finish", f'empezo a las:{hora_ini}, para un total de {hora_actual - hora_ini} tiempo')
 
 def clics_copiar():
