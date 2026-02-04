@@ -2,31 +2,21 @@
 
 import pyautogui #pip install PyAutoGUI --> this install pyperclip and pymsgbox
 import pyperclip as clipboard #pip install pyperclip
+from pynput import keyboard, mouse  #pip install pynput
 import time
 import datetime
 import os
 from tkinter import messagebox as MessageBox
 from tkinter.filedialog import asksaveasfile
+import json
 
-def clics_solo():
-    """
-    Perform clicks a specified number of times with a specified time interval.
-    """
-    puntos = int(input("\033[32mCuantas veces \033[34m"))
-    tiempo = int(input('\033[32mcada cuantos segundos?\033[34m'))
-    posiciones =[]
-    print("\033[32mPunto para el mouse\033[35m")
-    input()
-    px, py = pyautogui.position()
-    posiciones.append((px, py))
-    x = 0
-    while x <= puntos:
-        x += 1
-        pyautogui.moveTo(px, py)
-        pyautogui.click()
-        time.sleep(tiempo)
-        print(progressbar(x, puntos), end='\r')
-    MessageBox.showwarning("Finish", 'Finalizado')
+pyautogui.FAILSAFE = False
+SAFE_MARGIN = 10
+
+def check_abort():
+    x, y = pyautogui.position()
+    if x < SAFE_MARGIN and y < SAFE_MARGIN:
+        raise KeyboardInterrupt
 
 def clics_pegar():
     """
@@ -76,20 +66,29 @@ def clics_pegar():
         print(progressbar(x, len(list)), end='\r')
     MessageBox.showwarning("Finish", 'Finalizado')
 
-def clics_inf():
+def clics():
     """
     Perform clicks at multiple points for a specified number of times.
     """
-    puntos = int(input("\033[35mCuantos puntos? \033[39m"))
-    t = input("\033[32m tiempo en segundos (ex: 5.2)?\033[39m ")
-    count_input= input("¿Cuántas veces [letra v] o cuánto tiempo en horas [letra h]? (ej: 30v o 0.5h): ").lower().strip()
-    if count_input.endswith('v'):
-        count = int(count_input[:-1])
-    elif count_input.endswith('h'):
-        hours = float(count_input[:-1])
-        count = int(hours * 3600 / (puntos * (float(t) if t.replace('.','',1).isdigit() else (60 - puntos) // puntos + 0.5)))
+    try:
+        puntos = int(input("\033[35mCuantos puntos? \033[39m"))
+        t = round(float(input("\033[32m tiempo de transición entre ciclo en segundos (ej: 5.2)?\033[39m ")),1)
+        count_input= input("¿Cuántas veces [letra v], cuantas horas [h] o cuantos minutos [m]? (ej: 30v o 0.5h o 30m): ").lower().strip()
+        if count_input.endswith('v'):
+            count = int(count_input[:-1])
+        elif count_input.endswith('h'):
+            hours = float(count_input[:-1])
+            count = int(hours * 3600 * 0.75 / (t + 0.5 * puntos))  # considerando 0.5 segundos de movimiento por punto)
+        elif count_input.endswith('m'):
+            minutes = float(count_input[:-1])
+            count = int(minutes * 60 * 0.75 / (t + 0.5 * puntos)) # el 0.75 es un factor de seguridad para cubrir tiempos adicionales
+
+    except ValueError:
+        print("Entrada inválida. Asegúrese de ingresar números correctos.")
+        return
     posiciones =[]
-    for x in range(puntos):
+    print(f"\033[35m la cantidad de ciclos es: {count}, con un tiempo por ciclo de {t} segundos \033[39m")
+    for x in range(1, puntos + 1):
         print("\033[36mPunto ", str(x), " para el mouse\033[35m")
         input()
         px, py = pyautogui.position()
@@ -101,16 +100,9 @@ def clics_inf():
             xp, yp = p
             pyautogui.moveTo(xp, yp, 0.5) # 0.5 segundos de movimiento
             pyautogui.click()
-            tiempo = (60 - puntos) // puntos
-            try:
-                time.sleep(float(t))
-            except ValueError:
-                print("Error: tiempo no válido, usando tiempo por defecto ", tiempo)
-                time.sleep(tiempo)    
+        time.sleep(t)   
         hora_actual = datetime.datetime.now().replace(microsecond=0)
         print(progressbar(x, count), end='\r')
-        if float(t) < 1:
-            time.sleep(2)
     MessageBox.showwarning("Finish", f'empezo a las:{hora_ini}, para un total de {hora_actual - hora_ini} tiempo')
 
 def clics_copiar():
@@ -153,37 +145,6 @@ def save(list):
     file.write(list)
     file.close()
 
-def clean_news():
-    """
-    Clean news by performing clicks and key presses.
-    """
-    puntos = int(input("\033[35mCuantos casos? \033[39m"))
-    t = 1
-    print("\033[35mPunto para el caso 1")
-    input()
-    px, py = pyautogui.position()
-    print("Punto para la flecha")
-    input()
-    px2, py2 = pyautogui.position()
-    x = 0
-    while x <= puntos:
-        if x == 0:
-            pyautogui.moveTo(px, py, t)
-            pyautogui.click()
-            pyautogui.press('enter')
-        else:
-            pyautogui.moveTo(px2, py2, t)
-            pyautogui.click()
-            time.sleep(0.3)
-            pyautogui.press('enter')
-            time.sleep(0.3)
-            pyautogui.press('enter')
-            time.sleep(0.3)
-            pyautogui.press('space')
-        x += 1
-        
-        print(progressbar(x, puntos), end='\r')
-
 def progressbar(part, total):
     """
     Generate a progress bar based on the current progress and total count.
@@ -194,66 +155,109 @@ def progressbar(part, total):
     bar = f"[{'#'* completed}{'-'* miss}]{frac:.1%}"
     return bar
 
-def emergencia():
-    """
-    Clean news by performing clicks and key presses.
-    """
-    puntos = int(input("\033[35mCuantos correos? \033[39m"))
-    t = 1
-    print("\033[35mPunto para primer correo")
-    input()
-    px, py = pyautogui.position()
-    print("Punto para la seleccion de descarga")
-    input()
-    px2, py2 = pyautogui.position()
-    print("Punto para la seleccion de descarga")
-    input()
-    px3, py3 = pyautogui.position()
-    
+def grabar_macro():
+    print("\033[32mTenga en cuenta hacer la macro en la pantalla principal\033[39m")
+    print("\033[32mGrabando... Presione ESC para finalizar\033[39m")
 
-    while input("escriba 'ok' para continuar ") != 'ok':
-        print("No se ha escrito 'ok', por lo que no se continuara")
-        continue
-    print("Empezando")
-    x = 0
-    while x <= puntos:
+    events = []
+    last_time = time.time()
 
-        if x == 0:
-            pyautogui.moveTo(px, py, t)
-            pyautogui.click()
-        else:
-            pyautogui.press('down', interval=0.1)
-        
-        pyautogui.moveTo(px2, py2, t)
-        pyautogui.click()
-        time.sleep(1)
-        pyautogui.press('enter')
-        time.sleep(2)
-        pyautogui.moveTo(px3, py3, t)
-        pyautogui.click()
-        pyautogui.hotkey('shift', 'tab')
-        time.sleep(1)
-        x += 1
-        
-        print(progressbar(x, puntos), end='\r')
+    def save_event(event_type, data):
+        nonlocal last_time
+        now = time.time()
+        events.append({
+            "type": event_type,
+            "data": data,
+            "delay": now - last_time
+        })
+        last_time = now
+
+    def on_press(key):
+        if key == keyboard.Key.esc:
+            return False
+        save_event("key_down", {"key": str(key)})
+
+    def on_release(key):
+        save_event("key_up", {"key": str(key)})
+
+    def on_click(x, y, button, pressed):
+        save_event("mouse_click", {
+            "x": x, "y": y,
+            "button": str(button),
+            "pressed": pressed
+        })
+
+    with keyboard.Listener(on_press=on_press, on_release=on_release) as kl, \
+         mouse.Listener(on_click=on_click) as ml:
+        kl.join()
+        ml.stop()
+
+    with open("macro.json", "w") as f:
+        json.dump(events, f, indent=2)
+
+    MessageBox.showwarning("Finish", "Macro grabada correctamente")
+
+def reproducir_macro():
+    if not os.path.exists("macro.json"):
+        MessageBox.showerror("Error", "No existe macro grabada")
+        return
+    try:
+        veces = input("\033[32m¿Cuántas veces desea reproducir la macro? \033[39m")
+    except ValueError:
+        MessageBox.showerror("Error", "Entrada inválida")
+        return
+    try:
+        with open("macro.json") as f:
+            events = json.load(f)
+        print("\033[32mReproduciendo macro...\033[39m")
+        for _ in range(int(veces)):
+            for e in events:
+                time.sleep(e["delay"])
+
+                if e["type"] == "mouse_click":
+                    if e["data"]["pressed"]:
+                        pyautogui.mouseDown(e["data"]["x"], e["data"]["y"])
+                    else:
+                        pyautogui.mouseUp(e["data"]["x"], e["data"]["y"])
+
+                elif e["type"] == "key_down":
+                    pyautogui.keyDown(e["data"]["key"].replace("'", ""))
+
+                elif e["type"] == "key_up":
+                    pyautogui.keyUp(e["data"]["key"].replace("'", ""))
+
+    except KeyboardInterrupt:
+        MessageBox.showwarning(
+            "Abortado",
+            "Macro detenida manualmente (zona segura)"
+        )
+
 
 if __name__ == '__main__':
     while True:
         try:
             os.system('cls')
-            print("\n\033[49m\033[1m\033[32mClic, version 4\nElija una opción:\n\033[34m1) Solo dar clics n veces\n2) Enviar listado de casos\n3) Varios puntos\n4) Copiar Urls \n5) Clean News \n6) Salir!")
+            print("\033[32mSeleccione una opción:\033[39m")
+            print("""
+                1) Dar clics n veces
+                2) Enviar listado de casos
+                3) Clean News
+                4) Grabar macro (ESC para parar)
+                5) Reproducir macro
+                6) Salir
+                """)
+
             entrada = int(input("\033[32mOpcion 1 al 6?: \033[39m"))
             match entrada:
-                case 1:clics_solo()
+                case 1:clics()
                 case 2:clics_pegar()
-                case 3:clics_inf()
-                case 4:clics_copiar()
-                case 5:clean_news()
+                case 3:clics_copiar()
+                case 4:grabar_macro()
+                case 5:reproducir_macro()
                 case 6:
                     print("\n\033[32m\033[45mNospi!\033[39m\033[49m")
                     os.system('cmd exit()')
                     break
-                case 7:emergencia()
                 case _:
                     print("Seleccion inválida. Inténtalo nuevamente.")
                     continue

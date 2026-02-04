@@ -1,0 +1,235 @@
+[
+  {
+    "type": "key_up",
+    "data": {
+      "key": "Key.enter"
+    },
+    "delay": 0.08629536628723145
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 584,
+      "y": 1062,
+      "button": "Button.left",
+      "pressed": true
+    },
+    "delay": 4.772261619567871
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 584,
+      "y": 1062,
+      "button": "Button.left",
+      "pressed": false
+    },
+    "delay": 0.11989688873291016
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 757,
+      "y": 348,
+      "button": "Button.left",
+      "pressed": true
+    },
+    "delay": 1.664135456085205
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 757,
+      "y": 348,
+      "button": "Button.left",
+      "pressed": false
+    },
+    "delay": 0.10992050170898438
+  },
+  {
+    "type": "key_down",
+    "data": {
+      "key": "'h'"
+    },
+    "delay": 1.8888459205627441
+  },
+  {
+    "type": "key_up",
+    "data": {
+      "key": "'h'"
+    },
+    "delay": 0.07151031494140625
+  },
+  {
+    "type": "key_down",
+    "data": {
+      "key": "'o'"
+    },
+    "delay": 0.07216334342956543
+  },
+  {
+    "type": "key_up",
+    "data": {
+      "key": "'o'"
+    },
+    "delay": 0.08830761909484863
+  },
+  {
+    "type": "key_down",
+    "data": {
+      "key": "'l'"
+    },
+    "delay": 0.12115120887756348
+  },
+  {
+    "type": "key_up",
+    "data": {
+      "key": "'l'"
+    },
+    "delay": 0.08712530136108398
+  },
+  {
+    "type": "key_down",
+    "data": {
+      "key": "'a'"
+    },
+    "delay": 0.04087352752685547
+  },
+  {
+    "type": "key_up",
+    "data": {
+      "key": "'a'"
+    },
+    "delay": 0.10400056838989258
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 575,
+      "y": 1062,
+      "button": "Button.left",
+      "pressed": true
+    },
+    "delay": 1.5818495750427246
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 575,
+      "y": 1062,
+      "button": "Button.left",
+      "pressed": false
+    },
+    "delay": 0.11560320854187012
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 575,
+      "y": 1062,
+      "button": "Button.left",
+      "pressed": true
+    },
+    "delay": 0.5087056159973145
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 575,
+      "y": 1062,
+      "button": "Button.left",
+      "pressed": false
+    },
+    "delay": 0.11156582832336426
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 705,
+      "y": 350,
+      "button": "Button.left",
+      "pressed": true
+    },
+    "delay": 1.3102505207061768
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 705,
+      "y": 350,
+      "button": "Button.left",
+      "pressed": false
+    },
+    "delay": 0.11205887794494629
+  },
+  {
+    "type": "key_down",
+    "data": {
+      "key": "'q'"
+    },
+    "delay": 1.0178685188293457
+  },
+  {
+    "type": "key_up",
+    "data": {
+      "key": "'q'"
+    },
+    "delay": 0.09566831588745117
+  },
+  {
+    "type": "key_down",
+    "data": {
+      "key": "'u'"
+    },
+    "delay": 0.20851445198059082
+  },
+  {
+    "type": "key_up",
+    "data": {
+      "key": "'u'"
+    },
+    "delay": 0.07934689521789551
+  },
+  {
+    "type": "key_down",
+    "data": {
+      "key": "'e'"
+    },
+    "delay": 0.06475305557250977
+  },
+  {
+    "type": "key_up",
+    "data": {
+      "key": "'e'"
+    },
+    "delay": 0.07212018966674805
+  },
+  {
+    "type": "key_down",
+    "data": {
+      "key": "'l'"
+    },
+    "delay": 0.3290238380432129
+  },
+  {
+    "type": "key_up",
+    "data": {
+      "key": "'l'"
+    },
+    "delay": 0.07988357543945312
+  },
+  {
+    "type": "key_down",
+    "data": {
+      "key": "'i'"
+    },
+    "delay": 0.14385104179382324
+  },
+  {
+    "type": "key_up",
+    "data": {
+      "key": "'i'"
+    },
+    "delay": 0.08786177635192871
+  }
+]
