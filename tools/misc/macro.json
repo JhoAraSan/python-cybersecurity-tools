@@ -1,0 +1,129 @@
+[
+  {
+    "type": "key_up",
+    "data": {
+      "key": "Key.enter"
+    },
+    "delay": 0.08578848838806152
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 660,
+      "y": 198,
+      "button": "Button.left",
+      "pressed": true
+    },
+    "delay": 3.3931872844696045
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 660,
+      "y": 198,
+      "button": "Button.left",
+      "pressed": false
+    },
+    "delay": 0.09763312339782715
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 634,
+      "y": 406,
+      "button": "Button.left",
+      "pressed": true
+    },
+    "delay": 0.8050696849822998
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 634,
+      "y": 772,
+      "button": "Button.left",
+      "pressed": false
+    },
+    "delay": 5.349153995513916
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 684,
+      "y": 196,
+      "button": "Button.left",
+      "pressed": true
+    },
+    "delay": 1.986290693283081
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 684,
+      "y": 196,
+      "button": "Button.left",
+      "pressed": false
+    },
+    "delay": 0.0956723690032959
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 633,
+      "y": 402,
+      "button": "Button.left",
+      "pressed": true
+    },
+    "delay": 1.297989845275879
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 1300,
+      "y": 810,
+      "button": "Button.left",
+      "pressed": false
+    },
+    "delay": 2.8326644897460938
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 948,
+      "y": 598,
+      "button": "Button.left",
+      "pressed": true
+    },
+    "delay": 0.8732109069824219
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 763,
+      "y": 749,
+      "button": "Button.left",
+      "pressed": false
+    },
+    "delay": 2.9964706897735596
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 1072,
+      "y": 828,
+      "button": "Button.left",
+      "pressed": true
+    },
+    "delay": 0.9256560802459717
+  },
+  {
+    "type": "mouse_click",
+    "data": {
+      "x": 1084,
+      "y": 650,
+      "button": "Button.left",
+      "pressed": false
+    },
+    "delay": 2.0458922386169434
+  }
+]

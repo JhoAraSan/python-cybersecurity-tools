@@ -1,4 +1,5 @@
-# version 3 mas rapido
+# tener en cuenta que solo corre en windows
+# coding=utf-8
 
 import pyautogui #pip install PyAutoGUI --> this install pyperclip and pymsgbox
 import pyperclip as clipboard #pip install pyperclip
@@ -10,8 +11,7 @@ from tkinter import messagebox as MessageBox
 from tkinter.filedialog import asksaveasfile
 import json
 
-pyautogui.FAILSAFE = False
-SAFE_MARGIN = 10
+
 
 def check_abort():
     x, y = pyautogui.position()
@@ -192,13 +192,13 @@ def grabar_macro():
         kl.join()
         ml.stop()
 
-    with open("macro.json", "w") as f:
+    with open("tools\\misc\\macro.json", "w") as f:
         json.dump(events, f, indent=2)
 
     MessageBox.showwarning("Finish", "Macro grabada correctamente")
 
 def reproducir_macro():
-    if not os.path.exists("macro.json"):
+    if not os.path.exists("tools\\misc\\macro.json"):
         MessageBox.showerror("Error", "No existe macro grabada")
         return
     try:
@@ -207,7 +207,7 @@ def reproducir_macro():
         MessageBox.showerror("Error", "Entrada inválida")
         return
     try:
-        with open("macro.json") as f:
+        with open("tools\\misc\\macro.json") as f:
             events = json.load(f)
         print("\033[32mReproduciendo macro...\033[39m")
         for _ in range(int(veces)):
@@ -226,6 +226,8 @@ def reproducir_macro():
                 elif e["type"] == "key_up":
                     pyautogui.keyUp(e["data"]["key"].replace("'", ""))
 
+        MessageBox.showwarning("Finish", "Macro reproducida correctamente")
+
     except KeyboardInterrupt:
         MessageBox.showwarning(
             "Abortado",
@@ -234,6 +236,8 @@ def reproducir_macro():
 
 
 if __name__ == '__main__':
+    pyautogui.FAILSAFE = False
+    SAFE_MARGIN = 10
     while True:
         try:
             os.system('cls')
