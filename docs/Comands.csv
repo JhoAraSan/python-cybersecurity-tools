@@ -33,6 +33,8 @@ git log;Mostrar el historial de commits del repositorio.;git log -5 --pretty=for
 git config --global init.defaultBranch <main>;Configurar la rama principal predeterminada para nuevos repositorios.;git config --global init.defaultBranch main
 git config --global core.eol crlf;Configurar el tipo de salto de línea predeterminado como CRLF (retorno de carro + salto de línea).;git config --global core.eol crlf
 git merge <rama>;Realizar un merge de la rama especificada con la rama actual.;git merge feature
+git clone <url-del-repositorio>;Clonar un repositorio remoto en el directorio actual.;git clone
+git remote -v;Mostrar las URL de los repositorios remotos configurados.;git remote -v
 
 conda create -n <name> python=<version>; Crear el entorno de Conda en la version py que desea; conda create -n math python=3.11 
 conda activate <name>;activar el entorno deseado en conda; conda activate math
@@ -59,3 +61,6 @@ value = <value_if_true> if <expression> else <value_if_false>;If else single lin
 # PyQT6
 pip install PyQt6;Instalar librerias de pyqt6; pip install PyQt6
 pyuic6 -x <nombre_archivo.ui> -o <nombre_salida.py>;Convertir un archivo .ui a .py; pyuic6 -x Pantalla_principal.ui -o Pantalla_principal.py
+
+tree <folder>;Mostrar la estructura de directorios en forma de árbol.;tree
+tree /F <folder>;Mostrar la estructura de directorios y archivos en forma de árbol.;tree /F
