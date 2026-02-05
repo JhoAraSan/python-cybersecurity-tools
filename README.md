@@ -80,6 +80,14 @@ Extracts and copies email headers for analysis.
 Useful for **email analysis and incident response**.
 
 ---
+## 🔐 Endpoint Hygiene & Automation
+📁 `tools/endpoint_hygiene`
+
+- **endpoint_hygiene/**
+  - Windows endpoint hygiene checks and safe remediation
+  - PowerShell + Python automation
+  - Focused on security, stability, and transparency
+---
 
 ## 📄 Documentation
 
