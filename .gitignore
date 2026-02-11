@@ -32,7 +32,7 @@ build/
 *.tmp
 
 # Endpoint hygiene reports (local artifacts)
-tools/endpoint_hygiene/*.json
-!tools/endpoint_hygiene/sample_report.json
+tools/endpoint_hygiene/reports/*.json
+!tools/endpoint_hygiene/reports/sample_report.json
 
 docs/traza_virustotal.json

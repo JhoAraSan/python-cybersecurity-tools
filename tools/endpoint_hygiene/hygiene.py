@@ -67,7 +67,6 @@ def run_powershell_check(script: Path) -> dict | None:
             "error": str(e)
         }
 
-
 # ----------------------------
 # Check registry
 # ----------------------------
@@ -95,6 +94,62 @@ def get_checks_for_os() -> list[Path]:
 
     return [c for c in checks if c.exists()]
 
+# ----------------------------
+# Generate Summary
+# ----------------------------
+
+def build_summary(results: list[dict]) -> dict:
+    high_risk = []
+    medium_risk = []
+    failed = []
+
+    for r in results:
+        check_name = r.get("check")
+        status = r.get("status")
+
+        if status == "error":
+            failed.append(check_name)
+            continue
+
+        risk = (
+            r.get("data", {}).get("risk_level")
+            or r.get("data", {}).get("risk")
+        )
+
+        if risk == "high":
+            high_risk.append(check_name)
+        elif risk == "medium":
+            medium_risk.append(check_name)
+
+    overall_risk = "low"
+
+    if failed:
+        overall_risk = "high, for failed checks"
+    elif high_risk:
+        overall_risk = "high"
+    elif medium_risk:
+        overall_risk = "medium"
+
+    notes = []
+
+    if failed:
+        notes.append("One or more checks failed during execution")
+
+    if high_risk:
+        notes.append("High risk conditions detected")
+
+    if overall_risk == "low":
+        notes.append("System hygiene within normal parameters")
+
+    return {
+        "overall_risk": overall_risk,
+        "errors_detected": bool(failed),
+        "high_risk_checks": high_risk,
+        "medium_risk_checks": medium_risk,
+        "failed_checks": failed,
+        "notes": notes
+    }
+
 
 # ----------------------------
 # Main execution
@@ -118,13 +173,15 @@ def run_checks(selected: list[str] | None = None) -> dict:
         if result:
             results.append(result)
 
-    return {
+    report = {
         "hostname": platform.node(),
         "os": system,
         "timestamp_utc": datetime.now().isoformat(timespec="seconds"),
         "checks_executed": len(results),
+        "summary": build_summary(results),
         "results": results
     }
+    return report
 
 
 # ----------------------------
