@@ -32,12 +32,12 @@ if ($result.media_type -contains "HDD") {
     $overallRisk = "medium"
 }
 
-$output = @{
+$output =[ordered]@{
     check  = "disk_type"
     status = "ok"
-    data   = @{
-        disks      = $result
+    data   = [ordered]@{
         risk_level = $overallRisk
+        disks      = $result
     }
 }
 

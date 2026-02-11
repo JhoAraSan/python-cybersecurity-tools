@@ -40,10 +40,14 @@ endpoint_hygiene/
 ├── hygiene.py            # Orchestrator (Python)
 ├── hygiene.ps1           # Windows remediation (PowerShell)
 ├── checks/               # Read-only checks
-│   ├── temp_files.py
-│   ├── startup_items.ps1
+│   ├── disk.ps1
+│   ├── disk_linux.py
+│   ├── last_reboot.py
 │   ├── services.ps1
-│   └── disk.ps1
+│   ├── services_linux.py
+│   ├── startup_item.ps1
+│   ├── startup_items_linux.py
+│   └── temp_files.py
 ├── reports/
 │   └── sample_report.json
 └── utils/

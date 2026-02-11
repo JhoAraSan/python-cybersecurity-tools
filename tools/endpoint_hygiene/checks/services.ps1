@@ -31,13 +31,13 @@ if ($result.Count -gt 100) {
     $risk = "high"
 }
 
-$output = @{
+$output = [ordered]@{
     check  = "services"
     status = "ok"
-    data   = @{
+    data   = [ordered]@{
+        risk_level       = $risk
         running_services = $result.Count
         services         = $result
-        risk_level       = $risk
     }
 }
 

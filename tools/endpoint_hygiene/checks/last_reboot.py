@@ -39,9 +39,9 @@ def run_check() -> dict:
         "check": "last_reboot",
         "status": "ok",
         "data": {
+            "risk_level": calculate_risk(uptime_days),
             "last_boot_utc": boot_time.isoformat(timespec="seconds"),
-            "uptime_days": uptime_days,
-            "risk_level": calculate_risk(uptime_days)
+            "uptime_days": uptime_days
         }
     }
 
