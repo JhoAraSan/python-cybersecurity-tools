@@ -1,6 +1,9 @@
 
 # Guía parcial: Conexión a Exchange (PowerShell) y verificación/instalación de Active Directory
 
+:leftwards_arrow_with_hook: [python-cybersecurity-tools](../README.md)
+
+
 > **Estado:** borrador parcial (MD). Incluye pasos para: comprobar módulo de Exchange, actualizarlo, conectarse; y traer/instalar el módulo de Active Directory (o alternativas si no está disponible).
 
 ---

@@ -1,5 +1,8 @@
 # Guía de Escaneos en OpenVAS
 
+:leftwards_arrow_with_hook: [python-cybersecurity-tools](../README.md)
+
+
 OpenVAS es una herramienta de escaneo de vulnerabilidades muy completa, usada para evaluar la seguridad de sistemas y redes. Esta guía cubre desde escaneos básicos hasta más avanzados.
 
 ## Guía completa y estable para instalar **GVM / OpenVAS** en **Kali Linux (Rolling)**

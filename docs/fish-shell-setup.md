@@ -1,4 +1,7 @@
 # Fish Shell + Oh My Posh  
+
+:leftwards_arrow_with_hook: [python-cybersecurity-tools](../README.md)
+
 ## Installation Notes & Common Customizations
 
 This document summarizes the installation steps, configuration, and common questions/issues encountered while setting up **Fish shell** with **Oh My Posh**, including customization of the welcome message.

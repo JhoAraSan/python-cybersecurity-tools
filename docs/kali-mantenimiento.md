@@ -1,5 +1,8 @@
 # 🐉 Kali Linux – Mantenimiento, Actualización y Limpieza
 
+:leftwards_arrow_with_hook: [python-cybersecurity-tools](../README.md)
+
+
 Guía práctica para mantener **Kali Linux (kali-rolling)** limpio, estable y actualizado.
 
 ---
