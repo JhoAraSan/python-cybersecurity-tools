@@ -57,13 +57,13 @@ if ($startupItems.Count -gt 20) {
     $risk = "high"
 }
 
-$output = @{
+$output = [ordered]@{
     check  = "startup_items"
     status = "ok"
-    data   = @{
+    data   = [ordered]@{
+        risk_level = $risk
         count      = $startupItems.Count
         items      = $startupItems
-        risk_level = $risk
     }
 }
 
