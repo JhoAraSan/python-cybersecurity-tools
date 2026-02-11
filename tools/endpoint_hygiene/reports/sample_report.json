@@ -1,0 +1,85 @@
+{
+  "hostname": "SAMPLE-ENDPOINT",
+  "os": "Windows",
+  "timestamp_utc": "2026-02-11T18:42:00Z",
+  "checks_executed": 5,
+
+  "summary": {
+    "overall_risk": "low",
+    "notes": [
+      "Temporary files usage within normal range",
+      "No abnormal uptime detected"
+    ]
+  },
+
+  "results": [
+    {
+      "check": "temp_files",
+      "status": "ok",
+      "data": {
+        "total_size_mb": 512.4,
+        "locations": {
+          "system_temp": {
+            "path": "C:\\Windows\\Temp",
+            "size_mb": 120.3
+          },
+          "user_temp": {
+            "path": "C:\\Users\\Sample\\AppData\\Local\\Temp",
+            "size_mb": 392.1
+          }
+        }
+      }
+    },
+
+    {
+      "check": "last_reboot",
+      "status": "ok",
+      "data": {
+        "last_boot_utc": "2026-02-08T09:14:22Z",
+        "uptime_days": 3.4,
+        "risk_level": "low"
+      }
+    },
+
+    {
+      "check": "disk_type",
+      "status": "ok",
+      "data": {
+        "disks": [
+          {
+            "name": "Sample NVMe SSD",
+            "media_type": "SSD",
+            "size_gb": 512,
+            "health_status": "Healthy"
+          }
+        ],
+        "risk_level": "low"
+      }
+    },
+
+    {
+      "check": "startup_items",
+      "status": "ok",
+      "data": {
+        "count": 4,
+        "risk_level": "low",
+        "items": [
+          {
+            "source": "registry",
+            "name": "SecurityHealth",
+            "command": "C:\\Windows\\system32\\SecurityHealthSystray.exe"
+          }
+        ]
+      }
+    },
+
+    {
+      "check": "services",
+      "status": "ok",
+      "data": {
+        "running_services": 48,
+        "risk_level": "low"
+      }
+    }
+  ]
+}

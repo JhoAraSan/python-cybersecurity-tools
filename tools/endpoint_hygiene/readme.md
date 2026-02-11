@@ -109,7 +109,9 @@ This format is suitable for:
 
 ```bash
 python hygiene.py --check
+python hygiene.py --only temp_files last_reboot services
 python hygiene.py --remediate
+python hygiene.py --output relative/path/to/save/report.json
 ```
 >⚠️ Remediation actions are never executed by default.
 
