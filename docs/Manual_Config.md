@@ -65,6 +65,11 @@ Guide to restoring and customizing your work environment on Windows with support
 - Download from [anaconda.com](https://www.anaconda.com/)
 - Create virtual environments using `conda` or use `venv` for a lighter setup
 
+> install Conda:
+> ```cmd
+> curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe --output .\Miniconda3-latest-Windows-x86_64.exe
+> ```
+
   ➕ Add Anaconda PowerShell Prompt to Windows Terminal (Manual Method)
   1. Search for Anaconda PowerShell Prompt in the Windows Start Menu.
   2. Right-click > Open file location.
