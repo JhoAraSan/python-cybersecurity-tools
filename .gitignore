@@ -31,4 +31,8 @@ build/
 *.bak
 *.tmp
 
+# Endpoint hygiene reports (local artifacts)
+tools/endpoint_hygiene/*.json
+!tools/endpoint_hygiene/sample_report.json
+
 docs/traza_virustotal.json
