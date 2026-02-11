@@ -92,10 +92,12 @@ Useful for **email analysis and incident response**.
 ## 📄 Documentation
 
 Additional guides and notes can be found in the `docs/` directory, including:
-- OpenVAS installation notes
-- Kali Linux maintenance tips
-- Exchange and Active Directory connection guides
-- Command reference files
+- [Commands List](/docs/Comands.md)
+- [OpenVAS installation notes](/docs/instalar_OpenVas.md) 
+- [Kali Linux maintenance tips](/docs/kali-mantenimiento.md)
+- [Exchange and Active Directory connection guides](/docs/Guia_conexion_Exchange_y_AD.md)
+- [Post-Format Console Configuration Manual](/docs/Manual_Config.md)
+- [Fish Shell + Oh My Posh](/docs/fish-shell-setup.md)
 
 ---
 

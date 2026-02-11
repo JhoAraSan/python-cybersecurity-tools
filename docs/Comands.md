@@ -1,0 +1,86 @@
+# Comandos
+
+## Generales
+
+Comando|Descripción|Ejemplo
+|:---:|:----:|:-----:|
+ls|Listar los archivos y directorios en el directorio actual.|ls
+pwd|Mostrar la ruta del directorio actual.|pwd
+mkdir <nombre de la carpeta>|Crear una nueva carpeta con el nombre especificado.|mkdir documents
+cd <nombre del archivo>|Cambiar al directorio especificado.|cd myfolder
+cd ..|Cambiar al directorio padre.|cd ..
+cd ~|Cambiar al directorio de inicio del usuario.|cd ~
+mkdir <nombre del archivo o directorio>|Crear un nuevo archivo o directorio con el nombre especificado.|mkdir myfile
+touch <nombre del archivo/nombre de la carpeta>|Crear un nuevo archivo o actualizar la fecha de acceso/modificación de un archivo o carpeta.|touch myfile.txt
+code --wait <nombreArchivo>|Abrir el archivo especificado en Visual Studio Code.|code --wait index.html
+## Git
+Comando|Descripción|Ejemplo
+|:---:|:----:|:-----:|
+git status|Mostrar el estado actual del repositorio Git.|git status
+git add <archivo>|Agregar el archivo especificado al área de preparación.|git add myfile.txt
+git add .|Agregar todos los archivos modificados al área de preparación.|git add .
+git add -u|Agregar los cambios de archivos modificados o eliminados al área de preparación.|git add -u
+git reset <archivo>|Quitar el archivo especificado del área de preparación.|git reset myfile.txt
+git commit -m "mensaje para el commit"|Realizar un commit de los cambios en el repositorio con un mensaje específico.|git commit -m "Initial commit"
+git log|Mostrar el historial de commits del repositorio.|git log -5 --pretty=format:"%h - %an, %ar : %s"
+git rm <archivo>|Eliminar el archivo especificado del repositorio.|git rm myfile.txt
+git mv <nombreArchivo> <nombreCarpeta>|Mover o cambiar el nombre de un archivo en el repositorio.|git mv myfile.txt myfolder/
+git pull origin <rama>|Obtener los cambios más recientes del repositorio remoto y fusionarlos con la rama actual.|git pull origin main
+git checkout <rama>|Cambiar a la rama especificada.|git checkout dev
+git branch -r|Mostrar las ramas remotas del repositorio.|git branch -r
+git branch -d <rama>|Eliminar la rama especificada.|git branch -d feature
+git push <remoto> --delete <rama>|Eliminar la rama especificada del repositorio remoto.|git push origin --delete feature
+git branch <NOMBRE-NUEVA-RAMA>|Crear una nueva rama con el nombre especificado.|git branch new-branch
+git checkout -b <NOMBRE-NUEVA-RAMA>|Crear una nueva rama con el nombre especificado y cambiar a ella.|git checkout -b new-branch
+git remote update origin --prune|Actualizar la información del repositorio remoto y eliminar las referencias a ramas eliminadas.|git remote update origin --prune
+git branch -a|Mostrar todas las ramas locales y remotas del repositorio.|git branch -a
+git init -b <main/master> <nombreRepositorio>|Inicializar un nuevo repositorio Git con la rama principal especificada y el nombre del repositorio.|git init -b main myrepo
+git push origin <nombre de la rama>|Enviar los cambios locales al repositorio remoto en la rama especificada.|git push origin new-branch
+git log|Mostrar el historial de commits del repositorio.|git log -5 --pretty=format:"%h - %an, %ar : %s"
+git config --global init.defaultBranch <main>|Configurar la rama principal predeterminada para nuevos repositorios.|git config --global init.defaultBranch main
+git config --global core.eol crlf|Configurar el tipo de salto de línea predeterminado como CRLF (retorno de carro + salto de línea).|git config --global core.eol crlf
+git merge <rama>|Realizar un merge de la rama especificada con la rama actual.|git merge feature
+git clone <url-del-repositorio>|Clonar un repositorio remoto en el directorio actual.|git clone
+git remote -v|Mostrar las URL de los repositorios remotos configurados.|git remote -v
+
+## Conda
+Comando|Descripción|Ejemplo
+|:---:|:----:|:-----:|
+conda create -n <name> python=<version>| Crear el entorno de Conda en la version py que desea| conda create -n math python=3.11 
+conda activate <name>|activar el entorno deseado en conda| conda activate math
+conda deactivate|salir del entorno virtual| conda deactivate
+conda env list|Listar los entornos que tenemos
+conda remove --name <ENV_NAME> --all|eliminar un entorno deseado| 
+
+## Pip and Virtualenv
+
+Comando|Descripción|Ejemplo
+|:---:|:----:|:-----:|
+pip list| obtener las librerias disponibles en el entorno| conda deactivate
+python -m virtualenv <name-env>| crear entornos con virtualenv| python -m virtualenv mientorno
+.\<name-env>\Scripts\activate| activar entorno virtual en windows| .\mientorno\Scripts\activate
+source <name-env>/bin/activate| activar entorno virtual en linux| source mientorno/bin/activate
+pip install -r <file.txt>|Instalar librerias desde texto|pip install -r requirements.txt
+pip freeze > .\<file.txt>|Guardar en un TXT las librerias del entorno|pip freeze > .\requirements.txt
+pip uninstall <package_name>|Desinstalar un paquete|pip uninstall fastapi
+pip uninstall -y <package_name>|Desinstalar un paquete sin pedir confirmación|pip uninstall -y fastapi
+pip install <package_name>|instalar la libreria o paquete| pip install fastapi
+pip install "uvicorn[standard]"| instalar servidor de pruebas
+uvicorn <archive>:<name function app> --reload| levantar el servidor| uvicorn main:miapp --reload
+
+## Python
+Comando|Descripción|Ejemplo
+|:---:|:----:|:-----:|
+value = <value_if_true> if <expression> else <value_if_false> |If else single line| num += 3 if len(long[0]) > 25 else len(long[0])
+
+## PyQT6
+Comando|Descripción|Ejemplo
+|:---:|:----:|:-----:|
+pip install PyQt6|Instalar librerias de pyqt6| pip install PyQt6
+pyuic6 -x <nombre_archivo.ui> -o <nombre_salida.py>|Convertir un archivo .ui a .py| pyuic6 -x Pantalla_principal.ui -o Pantalla_principal.py
+
+## CMD 
+Comando|Descripción|Ejemplo
+|:---:|:----:|:-----:|
+tree <folder>|Mostrar la estructura de directorios en forma de árbol.|tree
+tree /F <folder>|Mostrar la estructura de directorios y archivos en forma de árbol.|tree /F
