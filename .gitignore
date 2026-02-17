@@ -35,4 +35,6 @@ build/
 tools/endpoint_hygiene/reports/*.json
 !tools/endpoint_hygiene/reports/sample_report.json
 
+tools/misc/macro.json
+
 docs/traza_virustotal.json
