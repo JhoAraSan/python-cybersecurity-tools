@@ -85,3 +85,22 @@ Comando|Descripción|Ejemplo
 |:---:|:----:|:-----:|
 tree <folder>|Mostrar la estructura de directorios en forma de árbol.|tree
 tree /F <folder>|Mostrar la estructura de directorios y archivos en forma de árbol.|tree /F
+
+## Win + R
+Comando|Descripción|Ejemplo
+|:---:|:----:|:-----:|
+msinfo32 | Abre Información del Sistema (hardware, BIOS, RAM, placa base, etc.) | msinfo32
+dxdiag | Herramienta de diagnóstico de DirectX (CPU, RAM, GPU, drivers) | dxdiag
+cmd | Abre la consola clásica de Windows (Command Prompt) | cmd
+powershell | Abre PowerShell (más moderno y potente que CMD) | powershell
+taskmgr | Abre el Administrador de tareas (procesos, rendimiento, inicio) | taskmgr
+devmgmt.msc | Abre el Administrador de dispositivos (drivers y hardware) | devmgmt.msc
+appwiz.cpl | Abre Programas y características (desinstalar programas) | appwiz.cpl
+ncpa.cpl | Abre Conexiones de red (adaptadores, IP, Wi-Fi, Ethernet) | ncpa.cpl
+services.msc | Abre la consola de Servicios de Windows | services.msc
+control | Abre el Panel de control clásico | control
+regedit | Editor del Registro de Windows | regedit
+gpedit.msc | Editor de políticas locales (no disponible en Home) | gpedit.msc
+winver | Muestra versión exacta de Windows | winver
+optionalfeatures | Activa/desactiva características de Windows | optionalfeatures
+
