@@ -12,6 +12,8 @@ from datetime import datetime
 from bs4 import BeautifulSoup #pip install beautifulsoup4
 from dotenv import load_dotenv #pip install python-dotenv ---> para cargar las variables de entorno
 import sys
+import platform
+from pathlib import Path
 from datetime import timedelta, timezone
 
 # ==================== CONFIGURACIÓN ====================
@@ -173,8 +175,18 @@ def procesar_correo(path, traza, output_dir, resumen_global, resumen_estadistica
     subject = msg['Subject']
     from_ = msg['From']
     reply_to = msg['Reply-To']
+    received_spf =msg["Received-SPF"]
     return_path = headers.get('Return-Path')
     filename = os.path.basename(path)
+
+    #obtener la ip del remitente desde el header "Received"
+    received_headers = msg.get_all('Received', [])
+    ip_remitente = None
+    for header in received_headers:
+        match = re.search(r'\[([\d\.]+)\]', header)
+        if match:
+            ip_remitente = match.group(1)
+            break
 
     body_text = ""
     body_html = ""
@@ -259,6 +271,10 @@ def procesar_correo(path, traza, output_dir, resumen_global, resumen_estadistica
     informe.append(f"- DMARC: {dmarc}")
     informe.append(f"- From vs Reply-To: {'⚠️ Diferente' if reply_to and reply_to != from_ else '✅ Coinciden'}")
     informe.append(f"- From vs Return-Path: {'⚠️ Diferente' if return_path and return_path != from_ else '✅ Coinciden'}\n")
+    informe.append("🧩 Análisis heurístico:")
+    informe.append(f"- IP del remitente: {ip_remitente if ip_remitente else 'No encontrada'}")
+    informe.append(f"- Recived-SPF: {received_spf if received_spf else 'No encontrado'}")
+
 
     if adjunto_info:
         informe.append("📦 Hash de adjuntos:")
@@ -271,13 +287,15 @@ def procesar_correo(path, traza, output_dir, resumen_global, resumen_estadistica
     print(f"✅ Procesado: {filename}")
 
 def seleccionar_y_procesar():
+    downloads_path = Path.home() / "Downloads" if (Path.home() / "Downloads").exists() else Path.home()
+
     root = tk.Tk()
     root.withdraw()
-    archivos = filedialog.askopenfilenames(title="Selecciona archivos .eml", filetypes=[("EML files", "*.eml")])
+    archivos = filedialog.askopenfilenames(initialdir=downloads_path, title="Selecciona archivos .eml", filetypes=[("EML files", "*.eml")])
     if not archivos:
         return
 
-    carpeta_salida = filedialog.askdirectory(title="Selecciona carpeta de salida")
+    carpeta_salida = filedialog.askdirectory(initialdir=downloads_path,title="Selecciona carpeta de salida")
     if not carpeta_salida:
         return
 
