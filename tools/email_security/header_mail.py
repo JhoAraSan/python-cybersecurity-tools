@@ -15,7 +15,7 @@ import sys
 from datetime import timedelta, timezone
 
 # ==================== CONFIGURACIÓN ====================
-ENV_PATH = "docs/keys.env"
+ENV_PATH = "assets/keys.env"
 try:
     with open(ENV_PATH, 'r') as f:
         pass  # Solo para verificar que el archivo existe
@@ -26,8 +26,8 @@ except FileNotFoundError:
 
 load_dotenv(dotenv_path=ENV_PATH)
 VT_API_KEY = os.getenv("VT_API_KEY")  # Guarda tu API Key de Virus Total en el archivo keys.env
-JSON_TRACE_PATH = "docs\\traza_virustotal.json"
-JSON_CLAVES_PATH = "docs\\claves_analisis.json"
+JSON_TRACE_PATH = "tools\\email_security\\traza_virustotal.json"
+JSON_CLAVES_PATH = "tools\\email_security\\claves_analisis.json"
 
 # ==================== FUNCIONES DE UTILIDAD ====================
 
