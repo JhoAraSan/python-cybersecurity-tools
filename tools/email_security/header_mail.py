@@ -11,8 +11,8 @@ from email.utils import parsedate_to_datetime
 from datetime import datetime
 from bs4 import BeautifulSoup #pip install beautifulsoup4
 from dotenv import load_dotenv #pip install python-dotenv ---> para cargar las variables de entorno
+import ipaddress
 import sys
-import platform
 from pathlib import Path
 from datetime import timedelta, timezone
 
@@ -96,11 +96,13 @@ def extraer_urls_html(html):
     scripts = [s.get('src') for s in soup.find_all('script', src=True)]
     return list(set(urls + iframes + scripts))
 
-def evaluar_spoofing(headers):
+def evaluar_spoofing(headers, ip_pattern):
     spf = dkim = dmarc = "❓ No encontrado"
+    ips = []
     for k in headers:
         if k.lower().startswith("authentication-results"):
             val = headers[k].lower()
+            ips.extend(re.findall(ip_pattern, val))
             if 'spf=pass' in val:
                 spf = "✅ Válido"
             elif 'spf=fail' in val or 'spf=softfail' in val:
@@ -115,7 +117,7 @@ def evaluar_spoofing(headers):
                 dmarc = "✅ Válido"
             elif 'dmarc=fail' in val or 'dmarc=none' in val:
                 dmarc = "❌ Falló"
-    return spf, dkim, dmarc
+    return spf, dkim, dmarc, ips
 
 def detectar_publicitario(texto, from_):
     claves = cargar_claves().get('publicidad', [])
@@ -179,14 +181,27 @@ def procesar_correo(path, traza, output_dir, resumen_global, resumen_estadistica
     return_path = headers.get('Return-Path')
     filename = os.path.basename(path)
 
-    #obtener la ip del remitente desde el header "Received"
-    received_headers = msg.get_all('Received', [])
-    ip_remitente = None
-    for header in received_headers:
-        match = re.search(r'\[([\d\.]+)\]', header)
-        if match:
-            ip_remitente = match.group(1)
-            break
+    # ---- Deteccion de IPS de envio
+    received_headers = msg.get_all("Received")
+    ips_re = []
+
+    # Tomar el último (origen más cercano al emisor)
+    origin_header = received_headers[-1]
+
+    # Regex que detecta IPv4
+    ip_pattern = r"\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b"
+
+    for header in reversed(received_headers):
+        ips = re.findall(ip_pattern, header)
+        for ip in ips:
+            try:
+                ip_obj = ipaddress.ip_address(ip)
+                if not ip_obj.is_private:
+                    ips_re.append(ip)
+                    break
+            except ValueError:
+                continue
+    # ----
 
     body_text = ""
     body_html = ""
@@ -233,7 +248,7 @@ def procesar_correo(path, traza, output_dir, resumen_global, resumen_estadistica
         adjuntos.append(nombre)
         adjunto_info.append((nombre, hash_arch, detecciones))
 
-    spf, dkim, dmarc = evaluar_spoofing(headers)
+    spf, dkim, dmarc, ips_val = evaluar_spoofing(headers,ip_pattern)
     es_publicitario = detectar_publicitario(body_text, from_)
     es_phishing = detectar_phishing_por_texto(body_text)
     veredicto = obtener_veredicto(total_detecciones, spf, dkim, dmarc, urls, adjuntos, es_publicitario, es_phishing)
@@ -272,7 +287,8 @@ def procesar_correo(path, traza, output_dir, resumen_global, resumen_estadistica
     informe.append(f"- From vs Reply-To: {'⚠️ Diferente' if reply_to and reply_to != from_ else '✅ Coinciden'}")
     informe.append(f"- From vs Return-Path: {'⚠️ Diferente' if return_path and return_path != from_ else '✅ Coinciden'}\n")
     informe.append("🧩 Análisis heurístico:")
-    informe.append(f"- IP del remitente: {ip_remitente if ip_remitente else 'No encontrada'}")
+    ips_unicas=list(set(ips_re + ips_val))
+    informe.append(f"- {len(ips_unicas)} direcciones IP encontradas: {ips_unicas}")
     informe.append(f"- Recived-SPF: {received_spf if received_spf else 'No encontrado'}")
 
 

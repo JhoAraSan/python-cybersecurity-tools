@@ -1,4 +1,5 @@
 import os
+import sys
 import requests #pip install requests
 import json
 from dotenv import load_dotenv #pip install python-dotenv
@@ -20,14 +21,14 @@ def ips(API_KEY):
         decodedResponse = json.loads(response.text)
         print (json.dumps(decodedResponse, sort_keys=True, indent=4))
 
-def ip_isp(ip_check):
-    load_dotenv(dotenv_path="list.env")
-    API_KEY = os.getenv("API_KEY_IPDB")
-    url = f"https://api.abuseipdb.com/api/v2/check?ipAddress={ip_check}"
-    headers = {"Accept": "application/json", "Key": API_KEY}
-    response = requests.get(url, headers=headers)
-    decodedResponse = json.loads(response.text)
-    return decodedResponse["data"]["isp"]
+# def ip_isp(ip_check):
+#     load_dotenv(dotenv_path="list.env")
+#     API_KEY = os.getenv("API_KEY_IPDB")
+#     url = f"https://api.abuseipdb.com/api/v2/check?ipAddress={ip_check}"
+#     headers = {"Accept": "application/json", "Key": API_KEY}
+#     response = requests.get(url, headers=headers)
+#     decodedResponse = json.loads(response.text)
+#     return decodedResponse["data"]["isp"]
 
 def network(API_KEY):
     url = 'https://api.abuseipdb.com/api/v2/check-block'
@@ -47,8 +48,16 @@ def network(API_KEY):
     print (json.dumps(decodedResponse, sort_keys=True, indent=4))
 
 if __name__ == '__main__':
+    ENV_PATH = "assets/keys.env"
+    try:
+        with open(ENV_PATH, 'r') as f:
+            pass  # Solo para verificar que el archivo existe
+    except FileNotFoundError:
+        msn=f"❌ Error: el archivo {ENV_PATH} no se encontró."
+        print(msn)
+        sys.exit(1)
 
-    load_dotenv(dotenv_path="list.env")
+    load_dotenv(dotenv_path=ENV_PATH)
     API_KEY = os.getenv("API_KEY_IPDB")
 
     if not API_KEY:
