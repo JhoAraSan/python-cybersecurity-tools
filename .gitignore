@@ -32,6 +32,7 @@ build/
 *.tmp
 
 # Endpoint hygiene reports (local artifacts)
+*virustotal*.json
 tools/endpoint_hygiene/reports/*.json
 !tools/endpoint_hygiene/reports/sample_report.json
 
