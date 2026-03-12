@@ -5,7 +5,7 @@ import csv
 import xml.etree.ElementTree as ET
 from tkinter import Tk
 from tkinter.filedialog import askdirectory
-from tools.email_security.Info_Ip import ip_isp
+from Info_Ip import ip_isp
 
 def extract_failed_ips(directory):
     failed_ips = []

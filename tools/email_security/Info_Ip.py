@@ -21,14 +21,14 @@ def ips(API_KEY):
         decodedResponse = json.loads(response.text)
         print (json.dumps(decodedResponse, sort_keys=True, indent=4))
 
-# def ip_isp(ip_check):
-#     load_dotenv(dotenv_path="list.env")
-#     API_KEY = os.getenv("API_KEY_IPDB")
-#     url = f"https://api.abuseipdb.com/api/v2/check?ipAddress={ip_check}"
-#     headers = {"Accept": "application/json", "Key": API_KEY}
-#     response = requests.get(url, headers=headers)
-#     decodedResponse = json.loads(response.text)
-#     return decodedResponse["data"]["isp"]
+def ip_isp(ip_check):
+    load_dotenv(dotenv_path="list.env")
+    API_KEY = os.getenv("API_KEY_IPDB")
+    url = f"https://api.abuseipdb.com/api/v2/check?ipAddress={ip_check}"
+    headers = {"Accept": "application/json", "Key": API_KEY}
+    response = requests.get(url, headers=headers)
+    decodedResponse = json.loads(response.text)
+    return decodedResponse["data"]["isp"]
 
 def network(API_KEY):
     url = 'https://api.abuseipdb.com/api/v2/check-block'
