@@ -1,11 +1,12 @@
 # Comandos
 :leftwards_arrow_with_hook: [python-cybersecurity-tools](../README.md)
 
-## Generales
+## Shell
 
 Comando|Descripción|Ejemplo
 |:---:|:----:|:-----:|
 ls|Listar los archivos y directorios en el directorio actual.|ls
+ls -a | Listar los archivos  incluso los ocultos | ls -a
 pwd|Mostrar la ruta del directorio actual.|pwd
 mkdir <nombre de la carpeta>|Crear una nueva carpeta con el nombre especificado.|mkdir documents
 cd <nombre del archivo>|Cambiar al directorio especificado.|cd myfolder
@@ -14,6 +15,10 @@ cd ~|Cambiar al directorio de inicio del usuario.|cd ~
 mkdir <nombre del archivo o directorio>|Crear un nuevo archivo o directorio con el nombre especificado.|mkdir myfile
 touch <nombre del archivo/nombre de la carpeta>|Crear un nuevo archivo o actualizar la fecha de acceso/modificación de un archivo o carpeta.|touch myfile.txt
 code --wait <nombreArchivo>|Abrir el archivo especificado en Visual Studio Code.|code --wait index.html
+[comand]  ./< -file > | Formas de leer archios que inician con guion "-" | cat ./-file
+[comand]  "<file with spaces>" | Forma de leer archivos con espacio  alternativa 1 | touch "file name with spaces"
+[comand]  <file with spaces> | Forma de leer archivos con espacio  alternativa 2 | touch file\ name\ with\ spaces
+
 ## Git
 Comando|Descripción|Ejemplo
 |:---:|:----:|:-----:|
@@ -54,7 +59,6 @@ conda env list|Listar los entornos que tenemos
 conda remove --name <ENV_NAME> --all|eliminar un entorno deseado| 
 
 ## Pip and Virtualenv
-
 Comando|Descripción|Ejemplo
 |:---:|:----:|:-----:|
 pip list| obtener las librerias disponibles en el entorno| conda deactivate
@@ -103,4 +107,8 @@ regedit | Editor del Registro de Windows | regedit
 gpedit.msc | Editor de políticas locales (no disponible en Home) | gpedit.msc
 winver | Muestra versión exacta de Windows | winver
 optionalfeatures | Activa/desactiva características de Windows | optionalfeatures
+
+# Shell
+Comando|Descripción|Ejemplo
+|:---:|:----:|:-----:|
 
