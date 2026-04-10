@@ -18,6 +18,8 @@ code --wait <nombreArchivo>|Abrir el archivo especificado en Visual Studio Code.
 [comand]  ./< -file > | Formas de leer archios que inician con guion "-" | cat ./-file
 [comand]  "<file with spaces>" | Forma de leer archivos con espacio  alternativa 1 | touch "file name with spaces"
 [comand]  <file with spaces> | Forma de leer archivos con espacio  alternativa 2 | touch file\ name\ with\ spaces
+find . -type f -size 1033c |  comando para encontrar archivos de un tamaño específico (en este caso, 1033 bytes) en el directorio actual y sus subdirectorios. | find . -type f -size 1033c
+find . -type f -size +1033c |  comando para encontrar archivos de un tamaño mayor a 1033 bytes en el directorio actual y sus subdirectorios. | find . -type f -size +1033c
 
 ## Git
 Comando|Descripción|Ejemplo
