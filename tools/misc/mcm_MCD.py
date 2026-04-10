@@ -100,25 +100,6 @@ def mcdym(a):
     else:
         msm = 'Error'
     return msm
-def mcdym(a):
-
-    if isinstance(a,list):
-        a=sorted([int(x) for x in a])
-        lf,lfc,md,mm=[],[],1,1
-        msm=''
-        for i in a:
-            lf.append(factorizar(i))
-            msm+=f'Factores de {i} son: {factorizar(i)}\n'
-        lfc=interseccion(lf)
-        [md:=md*n for n in lfc]
-        msm+=f'Los factores del MCD son: {lfc}, MCD={md}\n'
-        lfu=unir(lf)
-        [mm:=mm*n for n in lfu]
-        msm+=f'Los factores del mcm son: {lfu}, mcm={mm}\n'
-        print()
-    else:
-        msm='Error'
-    return msm
 # \033[32m
 # con la linea anterior es que se cambian las letras de color! 
 # el numero del color es entre [ y m osea el 32
