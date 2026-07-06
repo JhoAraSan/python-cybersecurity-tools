@@ -89,6 +89,19 @@ Useful for **email analysis and incident response**.
   - Focused on security, stability, and transparency
 ---
 
+## 📄 Excel to PDF Converter
+📁 `tools/file_processing/ExcelToPdf_v2`
+
+- **excel_to_pdf/**
+  - Converts Excel workbooks (.xlsx, .xlsm, .xls) to PDF format
+  - Supports recursive folder scanning and individual file selection
+  - Automatically configures orientation, scaling, margins, and print layout
+  - Skips temporary Office files and handles conversion errors gracefully
+  - Built with Python, Tkinter, pathlib, and pywin32
+  - Requires Microsoft Excel and Windows operating system
+
+---
+
 ## 📄 Documentation
 
 Additional guides and notes can be found in the `docs/` directory, including:
